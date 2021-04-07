@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, ButtonGroup } from 'react-bootstrap';
 import Task from './Task';
 import {connect} from 'react-redux';
-import{ renameBoard } from '../flux/actions/BoardActions'
+import{ renameBoard, deleteBoard, clearBoard } from '../flux/actions/BoardActions'
+import {Trash, Eraser, FileEarmarkMinus} from 'react-bootstrap-icons';
 
 class Board extends Component {
     handleChangeName = (id, name) => {
         this.props.renameBoard(id, name)
+    }
+
+    handleClear = (id) => {
+        this.props.clearBoard(id)
+    }
+
+    handleDelete = (id) => {
+        this.props.deleteBoard(id)
     }
 
     render() {
@@ -17,7 +26,12 @@ class Board extends Component {
                 <Card>
                     <Card.Header>
                         {name}
-                        <Button onClick={this.handleChangeName.bind(this, id, name)}>E</Button>
+                        <ButtonGroup style={{float: 'right'}}>
+                            <Button variant="success" onClick={this.handleChangeName.bind(this, id, name)}><Eraser/></Button>
+                            <Button variant="primary" onClick={this.handleClear.bind(this, id)}><FileEarmarkMinus/></Button>
+                            <Button variant="danger" onClick={this.handleDelete.bind(this, id)}><Trash/></Button>
+                        </ButtonGroup>
+                        
                     </Card.Header>
                     <Card.Body>
                     {tasks.map( task => (<Task key={task.id} task={task} />))}
@@ -35,4 +49,4 @@ const mapStateToProps = (state) => ({
     board: state.board
 })
 
-export default connect(mapStateToProps, {renameBoard})(Board)
+export default connect(mapStateToProps, {renameBoard, clearBoard, deleteBoard})(Board)

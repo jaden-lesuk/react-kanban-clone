@@ -1,4 +1,4 @@
-import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD } from './types';
+import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD, CLEAR_BOARD } from './types';
 import { v4 as uuidv4 } from 'uuid';
 
 export const createBoard = (name) => dispatch => {
@@ -11,11 +11,18 @@ export const createBoard = (name) => dispatch => {
 }
 
 export const renameBoard = (boardId ,newName) => dispatch => {
-    console.log("HIT")
     const board = {
         boardId,
         //remember to change this
-        newName: "Changed Name"
+        newName: "CHANGED NAME"
     }
     dispatch({type: RENAME_BOARD, payload: board})
+}
+
+export const clearBoard = (boardId) => dispatch => {
+    dispatch({type: CLEAR_BOARD, payload: boardId})
+}
+
+export const deleteBoard = (boardId) => dispatch => {
+    dispatch({type: DELETE_BOARD, payload: boardId})
 }

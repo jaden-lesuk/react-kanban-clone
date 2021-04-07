@@ -1,4 +1,4 @@
-import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD , CREATE_TASK} from '../actions/types';
+import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD , CLEAR_BOARD} from '../actions/types';
 import { v4 as uuidv4 } from 'uuid';
 
 // Board Schema {id: uuidv4(), name: 'TO DO', tasks: []}
@@ -18,13 +18,6 @@ export default function Reducer( state=initialState, action ) {
                 boards: [...state.boards, action.payload]
             };
 
-        // case CREATE_TASK:
-        //     return {
-        //         ...state,
-        //         boards: boards.map(board => board.id === action.payload.boardId
-        //             ? Object.assign(board, {tasks:}))
-        //     };
-
         case RENAME_BOARD:
             return {
                 ...state,
@@ -36,8 +29,18 @@ export default function Reducer( state=initialState, action ) {
         
         case DELETE_BOARD:
             return {
-                ...state
+                ...state,
+                boards: [...state.boards.filter(board => board.id !== action.payload)]
             };
+
+        case CLEAR_BOARD:
+            return {
+                ...state,
+                boards: state.boards.map(board => board.id === action.payload
+                    ? Object.assign(board, {tasks: []})
+                    : board )
+            };
+
         default:
             return state;
     }
