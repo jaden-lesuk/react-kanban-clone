@@ -1,4 +1,4 @@
-import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD , CLEAR_BOARD, CREATE_TASK} from '../actions/types';
+import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD , CLEAR_BOARD, CREATE_TASK, EDIT_TASK, DELETE_TASK} from '../actions/types';
 import { v4 as uuidv4 } from 'uuid';
 
 // Board Schema {id: uuidv4(), name: 'TO DO', tasks: []}
@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const initialState = {
     boards: [
         {id: uuidv4(), name: 'TO DO', tasks: [{id: uuidv4(), title: 'Add Button'}, {id: uuidv4(), title: 'Add ToolTip'}]},
-        {id: uuidv4(), name: 'IN PROGRESS', tasks: [{id: uuidv4(), title: 'Add Header'}, {id: uuidv4(), title: 'Add Footer'}]}],
+        {id: uuidv4(), name: 'NOW', tasks: [{id: uuidv4(), title: 'Add Header'}, {id: uuidv4(), title: 'Add Footer'}]}],
 }
 
 export default function Reducer( state=initialState, action ) {
@@ -26,7 +26,6 @@ export default function Reducer( state=initialState, action ) {
                     : board )
             };
 
-        
         case DELETE_BOARD:
             return {
                 ...state,
@@ -46,6 +45,19 @@ export default function Reducer( state=initialState, action ) {
                 ...state,
                 boards: state.boards.map(board => board.id === action.payload.boardId
                     ? Object.assign(board, {tasks: [...board.tasks, {id: action.payload.id, title: action.payload.title} ]})
+                    : board )
+            };
+
+        case EDIT_TASK:
+            return {
+
+            };
+
+        case DELETE_TASK:
+            return {
+                ...state,
+                boards: state.boards.map(board => board.id === action.payload.boardId
+                    ? Object.assign(board, {tasks: [...board.tasks.filter(task => task.id !== action.payload.id) ]})
                     : board )
             };
 

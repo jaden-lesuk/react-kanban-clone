@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card} from 'react-bootstrap';
+import { Button} from 'react-bootstrap';
 import {createTask} from '../flux/actions/BoardActions';
 import {connect} from 'react-redux'
 
