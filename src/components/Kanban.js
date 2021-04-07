@@ -18,8 +18,8 @@ class Kanban extends Component {
 
 const styles = {
     ColumnStyle: {
-        marginTop: '1vh',
-        marginBottom: '1vh',
+        marginTop: '2vh',
+        marginBottom: '2vh',
     }
 }
 

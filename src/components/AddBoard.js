@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, ButtonGroup } from 'react-bootstrap';
 import {createBoard} from '../flux/actions/BoardActions';
 import {connect} from 'react-redux'
 
@@ -24,25 +24,34 @@ class AddBoard extends Component {
         this.setState({ [e.target.name] : e.target.value })
     }
 
+    handleCancel = () => {
+        this.setState({newBoardName: ""})
+        this.setState({isCreateBoard: false})
+    }
+
     render() {
         return (
             <div style={this.props.style}>
             {!this.state.isCreateBoard? 
-                <div><Button onClick={this.handleClick}>Add Board</Button></div>
-                :<form  onSubmit={this.handleSubmit} >
-                    <div className="mb-3">
-                        <label className="form-label font-weight-bold" >Name:</label>
-                        <input 
-                                type = "text"
-                                name = "newBoardName"
-                                className="form-control"
-                                placeholder = "Add the name ..."
-                                value = {this.state.newBoardName}
-                                onChange = { this.handleChange }
-                            />
-                    </div>
-                    <Button variant="info" type="submit" size="md" block>Create New Board</Button>
-                </form>
+                <div><Button onClick={this.handleClick} size="lg" block>Add Board</Button></div>:
+                <Card><Card.Body>
+                    <form  onSubmit={this.handleSubmit} >
+                        <div className="mb-3">
+                            <label className="form-label font-weight-bold" >Name:</label>
+                            <input 
+                                    type = "text"
+                                    name = "newBoardName"
+                                    className="form-control"
+                                    placeholder = "Add the name ..."
+                                    value = {this.state.newBoardName}
+                                    onChange = { this.handleChange }
+                                />
+                        </div>
+                        <Button variant="danger" onClick={this.handleCancel} style={{float: 'left'}}>Cancel</Button>
+                        <Button variant="primary" type="submit" style={{float: 'right'}}>Add</Button>
+
+                    </form>
+                    </Card.Body></Card>
             }
             </div>
             
