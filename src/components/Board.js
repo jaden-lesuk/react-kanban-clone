@@ -4,9 +4,16 @@ import Task from './Task';
 import {connect} from 'react-redux';
 import{ renameBoard, deleteBoard, clearBoard } from '../flux/actions/BoardActions'
 import {Trash, Eraser, FileEarmarkMinus} from 'react-bootstrap-icons';
+import Swal from 'sweetalert2'
 
 class Board extends Component {
-    handleChangeName = (id, name) => {
+    handleChangeName = async(id,oldName) => {
+        const { value: name } = await Swal.fire({
+            title: 'Input new name',
+            input: 'text',
+            inputLabel: `New name for board: ${oldName}`,
+            inputPlaceholder: 'Board Name'
+        })
         this.props.renameBoard(id, name)
     }
 
@@ -25,7 +32,7 @@ class Board extends Component {
             <div style={this.props.style}>
                 <Card>
                     <Card.Header>
-                        {name}
+                        <strong>{name}</strong>
                         <ButtonGroup style={{float: 'right'}}>
                             <Button variant="success" onClick={this.handleChangeName.bind(this, id, name)}><Eraser/></Button>
                             <Button variant="primary" onClick={this.handleClear.bind(this, id)}><FileEarmarkMinus/></Button>

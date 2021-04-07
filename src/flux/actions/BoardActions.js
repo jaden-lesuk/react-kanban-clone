@@ -13,8 +13,7 @@ export const createBoard = (name) => dispatch => {
 export const renameBoard = (boardId ,newName) => dispatch => {
     const board = {
         boardId,
-        //remember to change this
-        newName: "CHANGED NAME"
+        newName,
     }
     dispatch({type: RENAME_BOARD, payload: board})
 }
