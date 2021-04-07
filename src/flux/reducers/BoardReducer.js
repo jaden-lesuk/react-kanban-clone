@@ -1,10 +1,11 @@
 import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD } from '../actions/types';
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
-    boards: ['TO DO', 'IN PROGRESS'],
+    boards: [
+        {id: uuidv4(), name: 'TO DO', tasks: []},
+        {id: uuidv4(), name: 'IN PROGRESS', tasks: []}],
 }
-
-// {name: 'TO DO'}
 
 export default function Reducer( state=initialState, action ) {
     switch (action.type) {

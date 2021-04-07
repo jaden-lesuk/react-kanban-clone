@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class Board extends Component {
     render() {
-        const name =this.props.board
+        const {name} =this.props.board
 
         return (
             <div>
