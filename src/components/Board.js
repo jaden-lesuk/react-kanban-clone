@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import{ renameBoard, deleteBoard, clearBoard } from '../flux/actions/BoardActions'
 import {Trash, Eraser, FileEarmarkMinus} from 'react-bootstrap-icons';
 import Swal from 'sweetalert2'
+import AddTask from './AddTask'
 
 class Board extends Component {
     handleChangeName = async(id,oldName) => {
@@ -44,7 +45,7 @@ class Board extends Component {
                     {tasks.map( task => (<Task key={task.id} task={task} />))}
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="secondary" disabled block>Add Task</Button>
+                        <AddTask boardid={id}/>
                     </Card.Footer>
                 </Card>
             </div>
