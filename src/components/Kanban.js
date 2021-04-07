@@ -9,7 +9,7 @@ class Kanban extends Component {
         return (
             <div>
                 {boards.map( board => (<Board key={board.id} board={board}/>))}
-                <AddBoard/>
+                {boards.length < 5? <AddBoard/>: null}
             </div>
         )
     }
