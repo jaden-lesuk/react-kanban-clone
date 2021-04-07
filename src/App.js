@@ -5,14 +5,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Kanban from './components/Kanban';
 
-
+import {Container} from 'react-bootstrap'
 
 class App extends Component {
   render(){
     return(
       <Provider store={store}>
-        <div>"React Kanban"</div>
-        <Kanban />
+        <Container fluid>
+          <div>REACT KANBAN</div>
+          <Kanban />
+        </Container>
       </Provider>
     )
   }

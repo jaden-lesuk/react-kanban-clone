@@ -26,7 +26,7 @@ class AddBoard extends Component {
 
     render() {
         return (
-            <div>
+            <div style={this.props.style}>
             {!this.state.isCreateBoard? 
                 <div><Button onClick={this.handleClick}>Add Board</Button></div>
                 :<form  onSubmit={this.handleSubmit} >
