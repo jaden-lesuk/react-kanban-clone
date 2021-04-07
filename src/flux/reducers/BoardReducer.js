@@ -4,6 +4,8 @@ const initialState = {
     boards: ['TO DO', 'IN PROGRESS'],
 }
 
+// {name: 'TO DO'}
+
 export default function Reducer( state=initialState, action ) {
     switch (action.type) {
         case CREATE_BOARD:
