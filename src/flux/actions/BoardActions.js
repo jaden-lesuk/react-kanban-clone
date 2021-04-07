@@ -9,3 +9,13 @@ export const createBoard = (name) => dispatch => {
     }
     dispatch({type: CREATE_BOARD, payload: board})
 }
+
+export const renameBoard = (boardId ,newName) => dispatch => {
+    console.log("HIT")
+    const board = {
+        boardId,
+        //remember to change this
+        newName: "Changed Name"
+    }
+    dispatch({type: RENAME_BOARD, payload: board})
+}

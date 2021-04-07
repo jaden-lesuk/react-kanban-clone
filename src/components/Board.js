@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import Task from './Task';
+import {connect} from 'react-redux';
+import{ renameBoard } from '../flux/actions/BoardActions'
 
-export default class Board extends Component {
+class Board extends Component {
+    handleChangeName = (id, name) => {
+        this.props.renameBoard(id, name)
+    }
+
     render() {
-        const {name, tasks} =this.props.board
+        const {id, name, tasks} =this.props.column
 
         return (
             <div style={this.props.style}>
                 <Card>
-                    <Card.Header>{name}</Card.Header>
+                    <Card.Header>
+                        {name}
+                        <Button onClick={this.handleChangeName.bind(this, id, name)}>E</Button>
+                    </Card.Header>
                     <Card.Body>
                     {tasks.map( task => (<Task key={task.id} task={task} />))}
                     </Card.Body>
@@ -21,3 +30,9 @@ export default class Board extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    board: state.board
+})
+
+export default connect(mapStateToProps, {renameBoard})(Board)

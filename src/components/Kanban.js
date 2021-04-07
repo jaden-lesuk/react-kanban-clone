@@ -9,7 +9,7 @@ class Kanban extends Component {
         const {boards} = this.props.board
         return (
             <Row>
-                {boards.map( board => (<Col md={3}><Board key={board.id} board={board} style={styles.ColumnStyle}/></Col>))}
+                {boards.map( board => (<Col md={3}><Board key={board.id} column={board} style={styles.ColumnStyle}/></Col>))}
                 {boards.length < 5? <Col md={3}><AddBoard style={styles.ColumnStyle}/></Col>: null}
             </Row>
         )
