@@ -11,13 +11,28 @@ class App extends Component {
   render(){
     return(
       <Provider store={store}>
-        <Container fluid>
-          <div>REACT KANBAN</div>
-          <Kanban />
-        </Container>
+        <div style={styles.mainContentStyle}>
+          <Container fluid>
+            <h3>React Kanban</h3>
+            <h5>Dashboard {" > "} Kanban</h5>
+            <Kanban />
+          </Container>
+        </div>
       </Provider>
     )
   }
+}
+
+
+const styles = {
+  mainContentStyle: {
+    paddingLeft: 0,
+    paddingRight: 0,
+    minHeight: '100vh',
+    background: '#ECECEC'
+  },
+
+  
 }
 
 export default App;
