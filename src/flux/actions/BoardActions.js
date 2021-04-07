@@ -35,7 +35,14 @@ export const createTask = (boardId, title) => dispatch => {
     dispatch({type: CREATE_TASK, payload: task})
 }
 
-/// EDIT TASK
+export const editTask = (id, boardId, newTitle) => dispatch => {
+    const task = {
+        id,
+        boardId,
+        newTitle
+    }
+    dispatch({type: EDIT_TASK, payload: task})
+}
 
 export const deleteTask = (id, boardId) => dispatch => {
     const task = {

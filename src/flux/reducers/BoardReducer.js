@@ -50,8 +50,14 @@ export default function Reducer( state=initialState, action ) {
 
         case EDIT_TASK:
             return {
-
+                ...state,
+                boards: state.boards.map(board => board.id === action.payload.boardId
+                    ? Object.assign(board, {tasks: [...board.tasks.filter(task => task.id === action.payload.id ?
+                        Object.assign(task, {title: action.payload.newTitle})
+                        : task ) ]})
+                    : board ),
             };
+
 
         case DELETE_TASK:
             return {
