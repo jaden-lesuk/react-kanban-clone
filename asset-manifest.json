@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/react-kanban-clone/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/react-kanban-clone/static/js/main.df3c168e.chunk.js",
+    "main.js.map": "/react-kanban-clone/static/js/main.df3c168e.chunk.js.map",
+    "runtime-main.js": "/react-kanban-clone/static/js/runtime-main.0e6506fb.js",
+    "runtime-main.js.map": "/react-kanban-clone/static/js/runtime-main.0e6506fb.js.map",
+    "static/css/2.150d169a.chunk.css": "/react-kanban-clone/static/css/2.150d169a.chunk.css",
+    "static/js/2.9d4f59f1.chunk.js": "/react-kanban-clone/static/js/2.9d4f59f1.chunk.js",
+    "static/js/2.9d4f59f1.chunk.js.map": "/react-kanban-clone/static/js/2.9d4f59f1.chunk.js.map",
+    "static/js/3.01ceed2e.chunk.js": "/react-kanban-clone/static/js/3.01ceed2e.chunk.js",
+    "static/js/3.01ceed2e.chunk.js.map": "/react-kanban-clone/static/js/3.01ceed2e.chunk.js.map",
+    "index.html": "/react-kanban-clone/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/react-kanban-clone/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.6dea0f05.chunk.css.map": "/react-kanban-clone/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.9d4f59f1.chunk.js.LICENSE.txt": "/react-kanban-clone/static/js/2.9d4f59f1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0e6506fb.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.9d4f59f1.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.df3c168e.chunk.js"
+  ]
+}
