@@ -6,6 +6,18 @@ import{ renameBoard, deleteBoard, clearBoard } from '../flux/actions/BoardAction
 import {Trash, Eraser, FileEarmarkMinus} from 'react-bootstrap-icons';
 import Swal from 'sweetalert2'
 import AddTask from './AddTask'
+import { DropTarget } from 'react-dnd'
+
+const Types = {
+    ITEM: 'task'
+}
+
+function collect(connect, monitor) {
+    return {
+        connectDropTarget: connect.dropTarget()
+    }
+}   
+
 
 class Board extends Component {
     handleChangeName = async(id,oldName) => {
@@ -28,8 +40,10 @@ class Board extends Component {
 
     render() {
         const {id, name, tasks} =this.props.column
+        const { connectDropTarget } = this.props
+        // console.log(connectDropTarget)
 
-        return (
+        return connectDropTarget(
             <div style={this.props.style}>
                 <Card>
                     <Card.Header>
@@ -57,4 +71,18 @@ const mapStateToProps = (state) => ({
     board: state.board
 })
 
+const spec = {
+    drop(props, monitor, component){
+        const item = monitor.getItem()
+        console.log(item);
+
+        // console.log(props.column.id)
+
+        // props.column.tasks.push(item)
+        return item;
+        
+    }
+}
+
+Board = DropTarget(Types.ITEM, spec, collect)(Board)
 export default connect(mapStateToProps, {renameBoard, clearBoard, deleteBoard})(Board)

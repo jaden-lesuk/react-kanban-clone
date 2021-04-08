@@ -2,8 +2,36 @@ import React, { Component } from 'react';
 import {Card, Button, ButtonGroup} from 'react-bootstrap';
 import {Trash, Eraser} from 'react-bootstrap-icons';
 import {connect} from 'react-redux';
-import{ deleteTask, editTask } from '../flux/actions/BoardActions'
-import Swal from 'sweetalert2'
+import{ deleteTask, editTask } from '../flux/actions/BoardActions';
+import Swal from 'sweetalert2';
+import { DragSource } from 'react-dnd';
+
+const Types = {
+    ITEM: 'task'
+}
+
+const itemSource = {
+    beginDrag(props, monitor) {
+        console.log(props.boardid)
+        // props.deleteTask(props.task.id, props.boardid)
+        const droppedTask = {task: props.task, prevBoard: props.boardid}
+        return droppedTask 
+    },
+    // endDrag(props, monitor) {
+    //     // console.log(props.boardid)
+    //     if(monitor.didDrop()){
+    //         props.deleteTask(props.task.id, props.boardid)
+    //     }
+        
+    // }
+}
+
+function collect(connect, monitor) {
+    return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+    }
+}
 
 class Task extends Component {
     handleDelete = (id) => {
@@ -23,7 +51,9 @@ class Task extends Component {
     render() {
         const {id, title} =this.props.task
 
-        return (
+        const { isDragging, connectDragSource, src } = this.props
+
+        return connectDragSource(
             <div style={styles.TaskStyle}>
                 <Card>
                     <Card.Body>
@@ -41,6 +71,7 @@ class Task extends Component {
 
 const styles = {
     TaskStyle: {
+        // opacity: isDragging ? 0.5 : 1,
         marginTop: '1vh',
         marginBottom: '1vh',
     }
@@ -50,4 +81,5 @@ const mapStateToProps = (state) => ({
     board: state.board
 })
 
+Task = DragSource(Types.ITEM, itemSource, collect)(Task)
 export default connect(mapStateToProps, {deleteTask, editTask})(Task)
