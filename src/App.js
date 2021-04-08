@@ -13,8 +13,7 @@ class App extends Component {
       <Provider store={store}>
         <div style={styles.mainContentStyle}>
           <Container fluid>
-            <h3>React Kanban</h3>
-            <h5>Dashboard {" > "} Kanban</h5>
+            <h3><strong>Kanban Clone</strong></h3>
             <Kanban />
           </Container>
         </div>

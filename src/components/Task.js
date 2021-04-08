@@ -12,18 +12,9 @@ const Types = {
 
 const itemSource = {
     beginDrag(props, monitor) {
-        console.log(props.boardid)
-        // props.deleteTask(props.task.id, props.boardid)
         const droppedTask = {task: props.task, prevBoard: props.boardid}
         return droppedTask 
-    },
-    // endDrag(props, monitor) {
-    //     // console.log(props.boardid)
-    //     if(monitor.didDrop()){
-    //         props.deleteTask(props.task.id, props.boardid)
-    //     }
-        
-    // }
+    }
 }
 
 function collect(connect, monitor) {
@@ -43,9 +34,15 @@ class Task extends Component {
             title: 'Input new title',
             input: 'text',
             inputLabel: `New title for task: ${oldTitle}`,
-            inputPlaceholder: 'Task Title'
+            inputPlaceholder: 'Task Title',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                return !value && 'You need to write something!'
+            }
         })
-        this.props.editTask(id, this.props.boardid, title)
+        if(title){
+            this.props.editTask(id, this.props.boardid, title)
+        }
     }
 
     render() {

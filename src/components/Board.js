@@ -25,9 +25,16 @@ class Board extends Component {
             title: 'Input new name',
             input: 'text',
             inputLabel: `New name for board: ${oldName}`,
-            inputPlaceholder: 'Board Name'
+            inputPlaceholder: 'Board Name',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                return !value && 'You need to write something!'
+            }
         })
-        this.props.renameBoard(id, name)
+
+        if (name) {
+            this.props.renameBoard(id, name)
+        }
     }
 
     handleClear = (id) => {
@@ -74,12 +81,7 @@ const mapStateToProps = (state) => ({
 const spec = {
     drop(props, monitor, component){
         const item = monitor.getItem()
-        console.log(item);
-
-        // console.log(props.column.id)
         props.transferTask(item, props.column.id)
-
-        // props.column.tasks.push(item)
         return item;
         
     }
