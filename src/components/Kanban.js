@@ -14,7 +14,7 @@ class Kanban extends Component {
             <DndProvider backend={HTML5Backend}>
                 <Row>
                     {/* Board and AddBoard are wrapped in <Col> for consistent styling across different rows*/}
-                    {boards.map( board => (<Col md={3}><Board key={board.id} column={board} style={styles.ColumnStyle}/></Col>))}
+                    {boards.map( board => (<Col key={board.id} md={3}><Board column={board} style={styles.ColumnStyle}/></Col>))}
                     {/* This makes sure a user can't add more than 5 boards */}
                     {boards.length < 5? <Col md={3}><AddBoard style={styles.ColumnStyle}/></Col>:
                     <Col md={3}><Alert variant="info" style={styles.ColumnStyle}>Amount of boards exhausted. You can only create 5 boards</Alert></Col>
