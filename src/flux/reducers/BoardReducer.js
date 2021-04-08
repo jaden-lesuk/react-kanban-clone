@@ -84,7 +84,7 @@ export default function Reducer( state=initialState, action ) {
                     ? Object.assign(board, {tasks: [...board.tasks.filter(task => task.id !== transTask.id) ]})
                     : board ),
                 // Adds to new board
-                boards: state.boards.map(board => board.id === newBoardId
+                newBoards: state.boards.map(board => board.id === newBoardId
                     ? Object.assign(board, {tasks: [...board.tasks, {id: transTask.id, title: transTask.title} ]})
                     : board )
                 }
