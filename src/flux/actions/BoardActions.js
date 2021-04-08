@@ -1,4 +1,4 @@
-import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD, CLEAR_BOARD, CREATE_TASK, EDIT_TASK, DELETE_TASK } from './types';
+import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD, CLEAR_BOARD, CREATE_TASK, EDIT_TASK, DELETE_TASK, TRANSFER_TASK} from './types';
 import { v4 as uuidv4 } from 'uuid';
 
 export const createBoard = (name) => dispatch => {
@@ -50,4 +50,13 @@ export const deleteTask = (id, boardId) => dispatch => {
         boardId
     }
     dispatch({type: DELETE_TASK, payload: task})
+}
+
+export const transferTask = (oldTask, newBoardId) => dispatch => {
+    const transferTask = {
+        transTask: oldTask.task,
+        prevBoardId: oldTask.prevBoard,
+        newBoardId
+    }
+    dispatch({type: TRANSFER_TASK, payload: transferTask})
 }

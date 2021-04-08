@@ -1,4 +1,4 @@
-import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD , CLEAR_BOARD, CREATE_TASK, EDIT_TASK, DELETE_TASK} from '../actions/types';
+import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD , CLEAR_BOARD, CREATE_TASK, EDIT_TASK, DELETE_TASK, TRANSFER_TASK} from '../actions/types';
 import { v4 as uuidv4 } from 'uuid';
 
 // Board Schema {id: uuidv4(), name: 'TO DO', tasks: []}
@@ -67,6 +67,24 @@ export default function Reducer( state=initialState, action ) {
                     : board )
             };
 
+        case TRANSFER_TASK:
+            const {transTask, prevBoardId, newBoardId} = action.payload
+            if (prevBoardId === newBoardId){
+                return state;
+            }
+
+            return{
+                ...state,
+                // Delete from previos board
+                boards: state.boards.map(board => board.id === prevBoardId
+                    ? Object.assign(board, {tasks: [...board.tasks.filter(task => task.id !== transTask.id) ]})
+                    : board ),
+                // Add to new board
+                boards: state.boards.map(board => board.id === newBoardId
+                    ? Object.assign(board, {tasks: [...board.tasks, {id: transTask.id, title: transTask.title} ]})
+                    : board )
+                }
+            
         default:
             return state;
     }

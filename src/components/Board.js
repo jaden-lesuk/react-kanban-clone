@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, Button, ButtonGroup } from 'react-bootstrap';
 import Task from './Task';
 import {connect} from 'react-redux';
-import{ renameBoard, deleteBoard, clearBoard } from '../flux/actions/BoardActions'
+import{ renameBoard, deleteBoard, clearBoard, transferTask } from '../flux/actions/BoardActions'
 import {Trash, Eraser, FileEarmarkMinus} from 'react-bootstrap-icons';
 import Swal from 'sweetalert2'
 import AddTask from './AddTask'
@@ -77,6 +77,7 @@ const spec = {
         console.log(item);
 
         // console.log(props.column.id)
+        props.transferTask(item, props.column.id)
 
         // props.column.tasks.push(item)
         return item;
@@ -85,4 +86,4 @@ const spec = {
 }
 
 Board = DropTarget(Types.ITEM, spec, collect)(Board)
-export default connect(mapStateToProps, {renameBoard, clearBoard, deleteBoard})(Board)
+export default connect(mapStateToProps, {renameBoard, clearBoard, deleteBoard, transferTask})(Board)
