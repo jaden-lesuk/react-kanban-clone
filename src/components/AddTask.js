@@ -44,7 +44,7 @@ class AddTask extends Component {
                 <div><Button onClick={this.handleClick} block>Add Task</Button></div>:
                     <form  onSubmit={this.handleSubmit} >
                         <div className="mb-3">
-                            <label className="form-label font-weight-bold" >Name:</label>
+                            <label className="form-label font-weight-bold" >Title:</label>
                             <input 
                                     type = "text"
                                     name = "newTaskName"
@@ -55,8 +55,8 @@ class AddTask extends Component {
                                     required
                                 />
                         </div>
-                        <Button variant="danger" onClick={this.handleCancel} style={{float: 'left'}}>Cancel</Button>
-                        <Button variant="primary" type="submit" style={{float: 'right'}}>Add</Button>
+                        <Button variant="outline-danger" onClick={this.handleCancel} style={{float: 'left'}}>Cancel</Button>
+                        <Button variant="outline-primary" type="submit" style={{float: 'right'}}>Add</Button>
 
                     </form>
 

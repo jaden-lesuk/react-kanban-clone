@@ -55,8 +55,8 @@ class AddBoard extends Component {
                                     required
                                 />
                         </div>
-                        <Button variant="danger" onClick={this.handleCancel} style={{float: 'left'}}>Cancel</Button>
-                        <Button variant="primary" type="submit" style={{float: 'right'}}>Add</Button>
+                        <Button variant="outline-danger" onClick={this.handleCancel} style={{float: 'left'}}>Cancel</Button>
+                        <Button variant="outline-primary" type="submit" style={{float: 'right'}}>Add</Button>
 
                     </form>
                     </Card.Body></Card>

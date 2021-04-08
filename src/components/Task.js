@@ -61,8 +61,8 @@ class Task extends Component {
                     <Card.Body>
                         {title}
                         <ButtonGroup style={{float: 'right'}} size="sm">
-                            <Button variant="success" onClick={this.handleEdit.bind(this, id, title)}><Eraser/></Button>
-                            <Button variant="danger" onClick={this.handleDelete.bind(this, id)}><Trash/></Button>
+                            <Button variant="success" onClick={this.handleEdit.bind(this, id, title)} data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Task"><Eraser/></Button>
+                            <Button variant="danger" onClick={this.handleDelete.bind(this, id)} data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Task"><Trash/></Button>
                         </ButtonGroup>
                     </Card.Body>
                 </Card>

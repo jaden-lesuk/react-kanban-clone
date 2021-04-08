@@ -58,9 +58,9 @@ class Board extends Component {
                     <Card.Header>
                         <strong>{name}</strong>
                         <ButtonGroup style={{float: 'right'}}>
-                            <Button variant="success" onClick={this.handleChangeName.bind(this, id, name)}><Eraser/></Button>
-                            <Button variant="primary" onClick={this.handleClear.bind(this, id)}><FileEarmarkMinus/></Button>
-                            <Button variant="danger" onClick={this.handleDelete.bind(this, id)}><Trash/></Button>
+                            <Button variant="success" onClick={this.handleChangeName.bind(this, id, name)} data-bs-toggle="tooltip" data-bs-placement="top" title="Rename Board"><Eraser/></Button>
+                            <Button variant="primary" onClick={this.handleClear.bind(this, id)} data-bs-toggle="tooltip" data-bs-placement="top" title="Clear Board"><FileEarmarkMinus/></Button>
+                            <Button variant="danger" onClick={this.handleDelete.bind(this, id)} data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Board"><Trash/></Button>
                         </ButtonGroup>
                         
                     </Card.Header>
