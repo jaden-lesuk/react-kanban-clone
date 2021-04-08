@@ -45,6 +45,7 @@ class AddBoard extends Component {
                                     placeholder = "Add the name ..."
                                     value = {this.state.newBoardName}
                                     onChange = { this.handleChange }
+                                    required
                                 />
                         </div>
                         <Button variant="danger" onClick={this.handleCancel} style={{float: 'left'}}>Cancel</Button>

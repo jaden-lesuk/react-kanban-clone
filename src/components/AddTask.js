@@ -45,6 +45,7 @@ class AddTask extends Component {
                                     placeholder = "Add the Title ..."
                                     value = {this.state.newTaskName}
                                     onChange = { this.handleChange }
+                                    required
                                 />
                         </div>
                         <Button variant="danger" onClick={this.handleCancel} style={{float: 'left'}}>Cancel</Button>
