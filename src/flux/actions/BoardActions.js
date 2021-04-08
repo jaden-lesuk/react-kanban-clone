@@ -1,4 +1,5 @@
 import { CREATE_BOARD, RENAME_BOARD, DELETE_BOARD, CLEAR_BOARD, CREATE_TASK, EDIT_TASK, DELETE_TASK, TRANSFER_TASK} from './types';
+// uuid is used to generate uniques Ids for tasks and boards
 import { v4 as uuidv4 } from 'uuid';
 
 export const createBoard = (name) => dispatch => {

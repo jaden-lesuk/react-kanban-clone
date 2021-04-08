@@ -10,6 +10,7 @@ import {Container} from 'react-bootstrap'
 class App extends Component {
   render(){
     return(
+      // Adds the redux store across all encapsulated components
       <Provider store={store}>
         <div style={styles.mainContentStyle}>
           <Container fluid>
