@@ -8,10 +8,12 @@ import Swal from 'sweetalert2'
 import AddTask from './AddTask'
 import { DropTarget } from 'react-dnd'
 
+//This is used to identify a matching droppable/draggable class
 const Types = {
     ITEM: 'task'
 }
 
+// This makes the component droppable
 function collect(connect, monitor) {
     return {
         connectDropTarget: connect.dropTarget()
@@ -21,6 +23,7 @@ function collect(connect, monitor) {
 
 class Board extends Component {
     handleChangeName = async(id,oldName) => {
+        // This calls an alert to get user input
         const { value: name } = await Swal.fire({
             title: 'Input new name',
             input: 'text',
@@ -31,7 +34,7 @@ class Board extends Component {
                 return !value && 'You need to write something!'
             }
         })
-
+        //Checks if empty
         if (name) {
             this.props.renameBoard(id, name)
         }
@@ -48,7 +51,6 @@ class Board extends Component {
     render() {
         const {id, name, tasks} =this.props.column
         const { connectDropTarget } = this.props
-        // console.log(connectDropTarget)
 
         return connectDropTarget(
             <div style={this.props.style}>
@@ -78,6 +80,7 @@ const mapStateToProps = (state) => ({
     board: state.board
 })
 
+//This handles the draggable item once its dropped
 const spec = {
     drop(props, monitor, component){
         const item = monitor.getItem()
@@ -87,5 +90,6 @@ const spec = {
     }
 }
 
+//This uses the DropTraget super component to make it droppable 
 Board = DropTarget(Types.ITEM, spec, collect)(Board)
 export default connect(mapStateToProps, {renameBoard, clearBoard, deleteBoard, transferTask})(Board)

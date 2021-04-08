@@ -6,10 +6,12 @@ import{ deleteTask, editTask } from '../flux/actions/BoardActions';
 import Swal from 'sweetalert2';
 import { DragSource } from 'react-dnd';
 
+//This is used to identify a matching droppable/draggable class
 const Types = {
     ITEM: 'task'
 }
 
+//This represents the Draggable task as a simple object
 const itemSource = {
     beginDrag(props, monitor) {
         const droppedTask = {task: props.task, prevBoard: props.boardid}
@@ -17,6 +19,7 @@ const itemSource = {
     }
 }
 
+// This makes the component draggable
 function collect(connect, monitor) {
     return {
     connectDragSource: connect.dragSource(),
@@ -30,6 +33,7 @@ class Task extends Component {
     }
 
     handleEdit = async(id, oldTitle) => {
+        // This calls an alert to get user input
         const { value: title } = await Swal.fire({
             title: 'Input new title',
             input: 'text',
@@ -40,6 +44,7 @@ class Task extends Component {
                 return !value && 'You need to write something!'
             }
         })
+        //Checks if empty
         if(title){
             this.props.editTask(id, this.props.boardid, title)
         }
@@ -48,7 +53,7 @@ class Task extends Component {
     render() {
         const {id, title} =this.props.task
 
-        const { isDragging, connectDragSource, src } = this.props
+        const {connectDragSource} = this.props
 
         return connectDragSource(
             <div style={styles.TaskStyle}>
@@ -68,7 +73,6 @@ class Task extends Component {
 
 const styles = {
     TaskStyle: {
-        // opacity: isDragging ? 0.5 : 1,
         marginTop: '1vh',
         marginBottom: '1vh',
     }
@@ -78,5 +82,6 @@ const mapStateToProps = (state) => ({
     board: state.board
 })
 
+//This uses the DragSource super component to make it draggable 
 Task = DragSource(Types.ITEM, itemSource, collect)(Task)
 export default connect(mapStateToProps, {deleteTask, editTask})(Task)

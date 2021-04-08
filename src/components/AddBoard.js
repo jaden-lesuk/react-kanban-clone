@@ -5,26 +5,32 @@ import {connect} from 'react-redux'
 
 class AddBoard extends Component {
     state = {
+        // This boolean controls the visibility of the component
         isCreateBoard: false,
         newBoardName: ""
     }
 
     handleClick = () => {
+        // This makes the form visible
         this.setState({isCreateBoard: true})
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
+        //This calls the CreateBoard Redux Action
         this.props.createBoard(this.state.newBoardName);
+        //This closes the form and resets the newBoardName state variable
         this.setState({newBoardName: ""})
         this.setState({isCreateBoard: false})
     }
 
     handleChange = (e) => {
+        //This updates the newBoardName state variable whenever there is an edit in the input field
         this.setState({ [e.target.name] : e.target.value })
     }
 
     handleCancel = () => {
+        //This closes the form and resets the newBoardName state variable
         this.setState({newBoardName: ""})
         this.setState({isCreateBoard: false})
     }
@@ -32,6 +38,7 @@ class AddBoard extends Component {
     render() {
         return (
             <div style={this.props.style}>
+            {/* The Ternary Operator handles the form visibility */}
             {!this.state.isCreateBoard? 
                 <div><Button onClick={this.handleClick} size="lg" block>Add Board</Button></div>:
                 <Card><Card.Body>

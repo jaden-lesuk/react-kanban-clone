@@ -5,27 +5,33 @@ import {connect} from 'react-redux'
 
 class AddTask extends Component {
     state = {
+        // This boolean controls the visibility of the component
         isCreateTask: false,
         newTaskName: "",
+        // This variable keeps track of the parent board
         boardID: this.props.boardid
     }
 
     handleClick = () => {
+        // This makes the form visible
         this.setState({isCreateTask: true})
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.createTask(this.state.boardID, this.state.newTaskName);
+        //This closes the form and resets the newTaskName state variable
         this.setState({newTaskName: ""})
         this.setState({isCreateTask: false})
     }
 
     handleChange = (e) => {
+        //This updates the newTaskName state variable whenever there is an edit in the input field
         this.setState({ [e.target.name] : e.target.value })
     }
 
     handleCancel = () => {
+        //This closes the form and resets the newTaskName state variable
         this.setState({newTaskName: ""})
         this.setState({isCreateTask: false})
     }
@@ -33,6 +39,7 @@ class AddTask extends Component {
     render() {
         return (
             <div>
+                {/* The Ternary Operator handles the form visibility */}
                 {!this.state.isCreateTask? 
                 <div><Button onClick={this.handleClick} block>Add Task</Button></div>:
                     <form  onSubmit={this.handleSubmit} >
